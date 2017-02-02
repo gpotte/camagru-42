@@ -1,0 +1,18 @@
+#filter_container {
+  border: 5px solid pink;
+}
+
+#header img{
+  height: 50px;
+  width: 30px;
+}
+
+#filter_container img {
+    opacity: 0.5;
+    filter: alpha(opacity=50); /* For IE8 and earlier */
+}
+
+#filter_container img:hover {
+    opacity: 1.0;
+    filter: alpha(opacity=100); /* For IE8 and earlier */
+}
