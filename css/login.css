@@ -1,0 +1,15 @@
+.container {
+  text-align: center;
+  margin : auto;
+}
+
+#login, #signin {
+  text-align: center;
+  width: 20vw;
+  max-width: 300px;
+  display: inline-block;
+}
+
+#login form fieldset{
+  height: 130px;
+}

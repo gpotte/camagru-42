@@ -1,3 +1,4 @@
+
     var streaming = false,
        video        = document.querySelector('#video'),
        canvas       = document.querySelector('#canvas'),
@@ -44,6 +45,10 @@
      canvas.width = width;
      canvas.height = height;
      canvas.getContext('2d').drawImage(video, 0, 0, width, height);
-     var data = canvas.toDataURL('image/png');
-    photo.setAttribute('src', data);
-   }
+     var canvasData = canvas.toDataURL("image/png");
+     $.ajax({
+       type: "POST",
+       url: "testSave.php",
+       data: canvasData
+     })
+}
