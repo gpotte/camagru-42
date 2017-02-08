@@ -1,10 +1,10 @@
 <?php
-  include 'database.php';
+  include 'db/database.php';
 
   create_db();
   session_start();
   if (!$_SESSION["Username"])
-    header('Location: ./login.html');
+    header('Location: login/login.html');
 ?>
 
 <html>
@@ -30,7 +30,7 @@
   <img id="filter_2" src=ressources/svg.png></img>
   <img id="filter_3" src=ressources/svg.png></img>
 </div>
-<script type="text/javascript" src="./Webcam.js"></script>
-<script type="text/javascript" src="select.js"></script>
+<script type="text/javascript" src="webcam/Webcam.js"></script>
+<script type="text/javascript" src="webcam/select.js"></script>
 </body>
 </html>
