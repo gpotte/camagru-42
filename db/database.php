@@ -21,7 +21,7 @@
                   `ID` INT NOT NULL AUTO_INCREMENT ,
                   `LOGIN` VARCHAR(15) NOT NULL ,
                   `MAIL` VARCHAR(50) NOT NULL ,
-                  `PASSWD` VARCHAR(15) NOT NULL ,
+                  `PASSWD` VARCHAR(150) NOT NULL ,
                   `VERIFIED` BOOLEAN NOT NULL DEFAULT FALSE,
                   PRIMARY KEY (`ID`)) ENGINE = InnoDB;";
 
@@ -34,7 +34,7 @@
 
     $DB_DSN = "mysql:host=localhost;";
     $DB_USER = "root";
-    $DB_PASSWORD = "";
+    $DB_PASSWORD = "root";
 
     $pdo = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
     $pdo->exec($db . $commentTable . $likeTable . $userTable . $photoTable);

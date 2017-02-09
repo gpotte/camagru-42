@@ -1,16 +1,16 @@
 $(document).ready(function(){
 
-    $("#log_button").click(function{
+    $("#log").submit(function(){
 
         $.post(
-            'login.php', // Un script PHP que l'on va créer juste après
+            'login.php' , // Un script PHP que l'on va créer juste après
             {
                 login : $("#login").val(),  // Nous récupérons la valeur de nos input que l'on fait passer à connexion.php
                 password : $("#password").val()
             },
 
             function(data){
-
+                console.log(data)
                 if(data == 'Success'){
                      // Le membre est connecté. Ajoutons lui un message dans la page HTML.
 
@@ -22,28 +22,24 @@ $(document).ready(function(){
                      $("#resultat").html("<p>Erreur lors de la connexion...</p>");
                 }
 
-            },
-
-            'text'
+            }
          );
 
     });
 
-
-
-    $("#signin").click(function{
+$("#signin").click(function(){
+//    $("#sign").submit(function(){
 
         $.post(
-            'signin.php', // Un script PHP que l'on va créer juste après
+          'signin.php', // Un script PHP que l'on va créer juste après
             {
                 login : $("#new_log").val(),  // Nous récupérons la valeur de nos input que l'on fait passer à connexion.php
                 password : $("#new_pwd").val(),
-                check : $("#check").val()
-                email : $("#mail").val()
+                check : $("#check").val(),
+                mail : $("#mail").val()
             },
-
             function(data){
-
+                console.log(data)
                 if(data == 'Success'){
                      // Le membre est connecté. Ajoutons lui un message dans la page HTML.
 
@@ -55,9 +51,7 @@ $(document).ready(function(){
                      $("#resultat").html("<p>Erreur lors de la connexion...</p>");
                 }
 
-            },
-
-            'text'
+            }
          );
 
     });

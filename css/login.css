@@ -3,13 +3,13 @@
   margin : auto;
 }
 
-.login {
+.loginform {
   text-align: center;
   width: 20vw;
   max-width: 300px;
   display: inline-block;
 }
 
-.login form fieldset{
+.loginform form fieldset{
   height: 130px;
 }
