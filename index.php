@@ -3,7 +3,7 @@
 
   create_db();
   session_start();
-  if (!$_SESSION["Username"])
+  if (!$_SESSION["username"])
     header('Location: login/login.html');
 ?>
 
@@ -19,8 +19,8 @@
 <body>
   <div id="header">
     <h1>CAMAGRU</h1>
-    <a href="#"><img src="ressources/58950.svg"></img></a>
-    <a href="#"><img src="ressources/295128.svg"></img></a>
+    <a href="login/logout.php"><img src="ressources/58950.svg"></img></a>
+    <a href="#"><img src="ressources/295128.svg" title='<?php echo $_SESSION["username"]; ?>'></img></a>
   </div>
 <div>
   <video id="video"></video>

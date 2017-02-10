@@ -23,6 +23,7 @@
                   `MAIL` VARCHAR(50) NOT NULL ,
                   `PASSWD` VARCHAR(150) NOT NULL ,
                   `VERIFIED` BOOLEAN NOT NULL DEFAULT FALSE,
+                  `ACC_HASH` VARCHAR(50) NOT NULL,
                   PRIMARY KEY (`ID`)) ENGINE = InnoDB;";
 
     $photoTable = "CREATE TABLE IF NOT EXISTS `CAMAGRU`.`photo`(

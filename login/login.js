@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-    $("#log").submit(function(){
+    $("#log_button").click(function(){
 
         $.post(
             'login.php' , // Un script PHP que l'on va créer juste après
@@ -12,13 +12,10 @@ $(document).ready(function(){
             function(data){
                 console.log(data)
                 if(data == 'Success'){
-                     // Le membre est connecté. Ajoutons lui un message dans la page HTML.
-
                      $("#resultat").html("<p>Vous avez été connecté avec succès !</p>");
+                     window.location = "http://localhost:8080/camagru"
                 }
                 else{
-                     // Le membre n'a pas été connecté. (data vaut ici "failed")
-
                      $("#resultat").html("<p>Erreur lors de la connexion...</p>");
                 }
 
@@ -40,17 +37,15 @@ $("#signin").click(function(){
             },
             function(data){
                 console.log(data)
-                if(data == 'Success'){
-                     // Le membre est connecté. Ajoutons lui un message dans la page HTML.
-
-                     $("#resultat").html("<p>Vous avez été connecté avec succès !</p>");
+                if(data == 'Success')
+                     $("#resultat").html("<h1>Un mail de confirmation vous a ete envoyer</h1>");
+                else if (data == 'Login already Taken')
+                     $("#resultat").html("<h1>Ce login est deja pris</h1>");
+                else if (data == 'Mail Already Taken')
+                      $("#resultat").html("<h1>Ce mail est deja utiliser</h1>");
+                else {
+                      $("#resultat").html("<h1>Erreur lors de la creation du compte</h1>");
                 }
-                else{
-                     // Le membre n'a pas été connecté. (data vaut ici "failed")
-
-                     $("#resultat").html("<p>Erreur lors de la connexion...</p>");
-                }
-
             }
          );
 

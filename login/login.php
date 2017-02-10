@@ -5,22 +5,21 @@
   create_db();
   session_start();
   /*connect to the db */
-  $DB_DSN = "mysql:host=localhost;";
+  $DB_DSN = "mysql:dbname=CAMAGRU;host=localhost;";
   $DB_USER = "root";
   $DB_PASSWORD = "root";
   $pdo = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
-  $pdo->exec("USE camagru;");
-  /* Request to log the user */
 
-  $check_log = "SELECT count(*) FROM users WHERE
-                login LIKE '". $_POST["login"] ."'
-                AND passwd LIKE '". hash(sha1, $_POST["password"]) ."' AND verified == 1;";
-  if ($res = $pdo->query($check_log)) {
-    if ($res->fetchColumn() > 0)
+  /* Request to log the user */
+  $check_log = "SELECT login FROM users WHERE
+                login LIKE ? AND passwd LIKE ? AND verified LIKE 1";
+  $sth = $pdo->prepare($check_log);
+  $sth->execute(array($_POST["login"], hash(sha1, $_POST["password"])));
+  if ($log = $sth->fetch())
+  {
+      $_SESSION["username"] = $_POST["login"];
       echo "Success";
-    else
-      echo "Wrong login or password";
   }
   else
-    print_r($dbh->errorInfo());
+      print_r($log);
 ?>
