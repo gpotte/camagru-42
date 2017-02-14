@@ -1,5 +1,6 @@
 <?php
   session_start();
   unset($_SESSION["username"]);
-  header('Location: index.php');
+  unset($_SESSION["restrict"]);
+  header('Location: ../index.php');
 ?>

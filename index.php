@@ -20,11 +20,12 @@
   <div id="header">
     <h1>CAMAGRU</h1>
     <a href="login/logout.php"><img src="ressources/58950.svg"></img></a>
-    <a href="#"><img src="ressources/295128.svg" title='<?php echo $_SESSION["username"]; ?>'></img></a>
+    <a href="manage_account/manage.php"><img src="ressources/295128.svg" title='<?php echo $_SESSION["username"]; ?>'></img></a>
   </div>
 <div>
   <video id="video"></video>
   <button id="startbutton">Prendre une photo</button>
+  <button id="upload_button">Upload une photo</button>
   <canvas id="canvas"></canvas>
 </div>
 <div id="filter_container">
