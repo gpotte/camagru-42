@@ -3,8 +3,12 @@
        video        = document.querySelector('#video'),
        canvas       = document.querySelector('#canvas'),
        startbutton  = document.querySelector('#startbutton'),
+       upload       = document.querySelector('#fileupload'),
+       finish       = document.querySelector('#finish'),
+       canvasData   = null,
        width = 320,
-       height = 0;
+       height = 240;
+
 
    navigator.getMedia = ( navigator.getUserMedia ||
                           navigator.webkitGetUserMedia ||
@@ -32,7 +36,6 @@
 
    video.addEventListener('canplay', function(ev){
      if (!streaming) {
-       height = video.videoHeight / (video.videoWidth/width);
        video.setAttribute('width', width);
        video.setAttribute('height', height);
        canvas.setAttribute('width', width);
@@ -41,14 +44,48 @@
      }
    }, false);
 
+   upload.addEventListener('change', handleFiles);
+
+   function handleFiles(e) {
+   canvas.width = width;
+   canvas.height = height;
+    var img = new Image;
+    img.src = URL.createObjectURL(e.target.files[0]);
+    img.onload = function() {
+        canvas.getContext('2d').drawImage(img, 0, 0, width, height);
+        canvasData = canvas.toDataURL("image/png");
+        console.log(canvasData);
+      }
+   }
    function takepicture() {
      canvas.width = width;
      canvas.height = height;
      canvas.getContext('2d').drawImage(video, 0, 0, width, height);
-     var canvasData = canvas.toDataURL("image/png");
-     $.ajax({
-       type: "POST",
-       url: "testSave.php",
-       data: canvasData
-     })
+     canvasData = canvas.toDataURL("image/png");
 }
+
+  finish.addEventListener('click', function(e)
+  {
+    console.log(canvasData);
+    if (!canvasData)
+      console.log("there is no pic");
+    else {
+      $.post(
+          'testSave.php' , // Un script PHP que l'on va créer juste après
+          {
+              data : canvasData,  // Nous récupérons la valeur de nos input que l'on fait passer à connexion.php
+          },
+
+          function(data){
+              console.log(data)
+              if(data == 'Success'){
+                   $("#resultat").html("<p>Pix Uploaded !</p>");
+              }
+              else{
+                   $("#resultat").html("<p>Pix Uploaded...</p>");
+              }
+
+          }
+       );
+      }
+  }, false);

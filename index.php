@@ -17,6 +17,7 @@
 
 </head>
 <body>
+  <div id="resultat"></div>
   <div id="header">
     <h1>CAMAGRU</h1>
     <a href="login/logout.php"><img src="ressources/58950.svg"></img></a>
@@ -25,13 +26,14 @@
 <div>
   <video id="video"></video>
   <button id="startbutton">Prendre une photo</button>
-  <button id="upload_button">Upload une photo</button>
-  <canvas id="canvas"></canvas>
+  <input type="file" id="fileupload" accept="image/*" />
+  <button id="finish">finish</button>
+  <canvas id="canvas" ondrop="drop(event)" ondragover="allowDrop(event)">Please Use a html5 compatible Browser</canvas>
 </div>
 <div id="filter_container">
-  <img id="filter_1" src=ressources/svg.png></img>
-  <img id="filter_2" src=ressources/svg.png></img>
-  <img id="filter_3" src=ressources/svg.png></img>
+  <img id="filter_1" src=ressources/svg.png draggable="true"></img>
+  <img id="filter_2" src=ressources/svg.png draggable="true"></img>
+  <img id="filter_3" src=ressources/svg.png draggable="true"></img>
 </div>
 <script type="text/javascript" src="webcam/Webcam.js"></script>
 <script type="text/javascript" src="webcam/select.js"></script>
