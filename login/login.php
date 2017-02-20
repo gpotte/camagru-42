@@ -1,19 +1,12 @@
 <?php
 
+  include '../db/connect_db.php';
   include '../db/database.php';
 
   create_db();
+  $pdo = connect_db();
   session_start();
   /*connect to the db */
-  $DB_DSN = "mysql:dbname=CAMAGRU;host=localhost;";
-  $DB_USER = "root";
-  $DB_PASSWORD = "root";
-  try {
-    $pdo = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
-  }
-  catch(PDOException $ex){
-    $msg = "Failed to connect to the database";
-  }
 
   /* Request to log the user */
   $check_log = "SELECT login FROM users WHERE

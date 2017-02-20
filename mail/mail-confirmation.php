@@ -1,16 +1,9 @@
 <?php
+  include '../db/connect_db.php';
 
   /*connect to the db */
   session_start();
-  $DB_DSN = "mysql:dbname=CAMAGRU;host=localhost;";
-  $DB_USER = "root";
-  $DB_PASSWORD = "root";
-  try {
-    $pdo = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
-  }
-  catch(PDOException $ex){
-    $msg = "Failed to connect to the database";
-  }
+  $pdo = connect_db();
 
   /*request to validate the account */
   $request = "UPDATE users SET verified = 1 WHERE acc_hash LIKE ? AND login LIKE ?";

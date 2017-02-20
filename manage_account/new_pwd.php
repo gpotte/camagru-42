@@ -1,15 +1,7 @@
 <?php
+  include '../db/connect_db.php';
   session_start();
-  $DB_DSN = "mysql:dbname=CAMAGRU;host=localhost;";
-  $DB_USER = "root";
-  $DB_PASSWORD = "root";
-  try {
-    $pdo = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
-  }
-  catch(PDOException $ex){
-    $msg = "Failed to connect to the database";
-  }
-
+  $pdo = connect_db();
 
       $query = "UPDATE users SET passwd = ? WHERE login LIKE ?";
       if (strlen($_POST["pwd"]) > 4 && strlen($_POST["pwd"]) < 15 &&

@@ -10,9 +10,9 @@ $(document).ready(function(){
             },
 
             function(data){
-                console.log(data)
+                console.log(data);
                 if(data == 'Success'){
-                     $("#current_login").html(login);
+                     $("#current_login").html($("#login").val());
                      $("#resultat").html("<p>Login changé avec succès !</p>");
                 }
                 else if (data="used")
@@ -69,7 +69,7 @@ $(document).ready(function(){
                 else if (data == "invalid")
                      $("#resultat").html("<p>Ce mot de passe est invalide...</p>");
                 else
-                     $("#resultat").html("<p>erreur...</p>");                  
+                     $("#resultat").html("<p>erreur...</p>");
             }
          );
 

@@ -1,16 +1,9 @@
 <?php
+  include '../db/connect_db.php';
   session_start();
   if (!$_SESSION["username"])
     header('Location: login/login.html');
-  $DB_DSN = "mysql:dbname=CAMAGRU;host=localhost;";
-  $DB_USER = "root";
-  $DB_PASSWORD = "root";
-  try {
-    $pdo = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
-  }
-  catch(PDOException $ex){
-    $msg = "Failed to connect to the database";
-  }
+  $pdo = connect_db();
   $query = "SELECT id, mail FROM users WHERE LOGIN LIKE ?";
   $sth = $pdo->prepare($query);
   $sth->execute(array($_SESSION["username"]));

@@ -1,20 +1,13 @@
 <?php
-  include '../db/database.php';
+  include '../db/connect_db.php';
   include '../mail/mail.php';
 
   create_db();
   if ($_POST["password"] == $_POST["check"])
   {
     /*connect to the db */
-    $DB_DSN = "mysql:dbname=CAMAGRU;host=localhost;";
-    $DB_USER = "root";
-    $DB_PASSWORD = "root";
-    try {
-      $pdo = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
-    }
-    catch(PDOException $ex){
-      $msg = "Failed to connect to the database";
-    }
+    $pdo = connect_db();
+
 
     /*create the new user request */
     $login = $_POST["login"];

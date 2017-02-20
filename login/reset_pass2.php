@@ -1,15 +1,8 @@
 <?php
+  include '../db/connect_db.php';
   if (isset($_POST["password"]) && isset($_POST["confirmation"]) && isset($_POST["id"]) && isset($_POST["log"]))
   {
-    $DB_DSN = "mysql:dbname=CAMAGRU;host=localhost;";
-    $DB_USER = "root";
-    $DB_PASSWORD = "root";
-    try {
-      $pdo = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
-    }
-    catch(PDOException $ex){
-      $msg = "Failed to connect to the database";
-    }
+    $pdo = connect_db();
     $request = "UPDATE users SET passwd = ? WHERE acc_hash LIKE ?";
     $modify = "UPDATE users SET acc_hash = ? WHERE login LIKE ?";
     $passwd = hash(sha1, $_POST["password"]);
