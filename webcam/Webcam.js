@@ -54,9 +54,9 @@
     img.onload = function() {
         canvas.getContext('2d').drawImage(img, 0, 0, width, height);
         canvasData = canvas.toDataURL("image/png");
-        console.log(canvasData);
       }
    }
+
    function takepicture() {
      canvas.width = width;
      canvas.height = height;
@@ -66,9 +66,8 @@
 
   finish.addEventListener('click', function(e)
   {
-    console.log(canvasData);
     if (!canvasData)
-      console.log("there is no pic");
+      $("#resultat").html("<p>Please take a picture !</p>");
     else {
       $.post(
           'testSave.php' , // Un script PHP que l'on va créer juste après
@@ -77,12 +76,12 @@
           },
 
           function(data){
-              console.log(data)
+              console.log(data);
               if(data == 'Success'){
                    $("#resultat").html("<p>Pix Uploaded !</p>");
               }
               else{
-                   $("#resultat").html("<p>Pix Uploaded...</p>");
+                   $("#resultat").html("<p>Fail...</p>");
               }
 
           }
