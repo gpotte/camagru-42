@@ -4,7 +4,7 @@
   if (!$_SESSION["username"])
     header('Location: login/login.html');
   $pdo = connect_db();
-  $query = "SELECT id, mail FROM users WHERE LOGIN LIKE ?";
+  $query = "SELECT mail FROM users WHERE LOGIN LIKE ?";
   $sth = $pdo->prepare($query);
   $sth->execute(array($_SESSION["username"]));
   $acc = $sth->fetch();
@@ -32,13 +32,6 @@
       <tr>
         <td id="current_login">
           <?php echo $_SESSION["username"];?>
-        </td>
-        <td>
-          <input type="text" name="login" placeholder="login" id="login" maxlength="15">
-          <input type="hidden" name="id" id="id" value=<?php echo $acc["id"]?>>
-        </td>
-        <td>
-          <button id="log_button">Change Login</button>
         </td>
       </tr>
 

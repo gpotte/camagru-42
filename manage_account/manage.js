@@ -1,31 +1,5 @@
 $(document).ready(function(){
 
-    $("#log_button").click(function(){
-
-        $.post(
-            'new_log.php' , // Un script PHP que l'on va créer juste après
-            {
-                login : $("#login").val(),  // Nous récupérons la valeur de nos input que l'on fait passer à connexion.php
-                id : $("#id").val(),
-            },
-
-            function(data){
-                console.log(data);
-                if(data == 'Success'){
-                     $("#current_login").html($("#login").val());
-                     $("#resultat").html("<p>Login changé avec succès !</p>");
-                }
-                else if (data="used")
-                     $("#resultat").html("<p>Ce login est deja pris...</p>");
-                else if (data == "invalid")
-                     $("#resultat").html("<p>Ce login est invalide...</p>");
-                else
-                      $("#resultat").html("<p>erreur...</p>");
-                }
-         );
-
-    });
-
     $("#mail_button").click(function(){
 
         $.post(

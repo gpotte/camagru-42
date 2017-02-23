@@ -3,11 +3,12 @@
        video        = document.querySelector('#video'),
        canvas       = document.querySelector('#canvas'),
        startbutton  = document.querySelector('#startbutton'),
-       upload       = document.querySelector('#fileupload'),
-       finish       = document.querySelector('#finish'),
+       uploadbutton = document.querySelector('#fileupload'),
+       finishbutton = document.querySelector('#finish'),
        canvasData   = null,
-       width = 320,
-       height = 240;
+       filterData = null,
+       width = 960,
+       height = 720;
 
 
    navigator.getMedia = ( navigator.getUserMedia ||
@@ -36,15 +37,18 @@
 
    video.addEventListener('canplay', function(ev){
      if (!streaming) {
+       height = video.videoHeight / (video.videoWidth/width);
        video.setAttribute('width', width);
        video.setAttribute('height', height);
        canvas.setAttribute('width', width);
        canvas.setAttribute('height', height);
+       canvasFilter.setAttribute('width', width);
+       canvasFilter.setAttribute('height', height);
        streaming = true;
      }
    }, false);
 
-   upload.addEventListener('change', handleFiles);
+   uploadbutton.addEventListener('change', handleFiles);
 
    function handleFiles(e) {
    canvas.width = width;
@@ -57,14 +61,14 @@
       }
    }
 
-   function takepicture() {
+   function takePicture() {
      canvas.width = width;
      canvas.height = height;
      canvas.getContext('2d').drawImage(video, 0, 0, width, height);
      canvasData = canvas.toDataURL("image/png");
 }
 
-  finish.addEventListener('click', function(e)
+  function uploadPicture()
   {
     if (!canvasData)
       $("#resultat").html("<p>Please take a picture !</p>");
@@ -73,10 +77,10 @@
           'testSave.php' , // Un script PHP que l'on va créer juste après
           {
               data : canvasData,  // Nous récupérons la valeur de nos input que l'on fait passer à connexion.php
+              filter : filterData,
           },
-
           function(data){
-              console.log(data);
+            console.log(data);
               if(data == 'Success'){
                    $("#resultat").html("<p>Pix Uploaded !</p>");
               }
@@ -87,4 +91,4 @@
           }
        );
       }
-  }, false);
+    }

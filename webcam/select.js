@@ -1,13 +1,29 @@
 var filter = null,
     filter_container = document.querySelector('#filter_container'),
-    startbutton  = document.querySelector('#startbutton'),
+    reset_button = document.querySelector("#reset"),
     filter_list = document.querySelector('#filter_container').getElementsByTagName('img');
 
 
 startbutton.addEventListener('click', function(ev){
   if (filter != null)
   {
-    takepicture();
+    takePicture();
+    ev.preventDefault();
+  }
+  else
+    alert("FILTER IS NULL");
+}, false);
+
+reset_button.addEventListener('click', function(ev){
+  reset_filter();
+  reset_canvas();
+}, false);
+
+finishbutton.addEventListener('click', function(ev){
+  if (filter != null)
+  {
+    filterData = canvasFilter.toDataURL("image/png");
+    uploadPicture();
     ev.preventDefault();
   }
   else
@@ -17,18 +33,23 @@ startbutton.addEventListener('click', function(ev){
   filter_container.addEventListener('click',  function(e){
   if (e.target.id != "filter_container")
   {
-    console.log(filter);
     if (filter != null)
       filter.style.border = "none";
-    console.log(filter);
 
     if (e.target == filter)
+    {
       filter = null;
+      reset_filter();
+    }
     else
     {
       e.target.style.border = "5px solid black";
       filter = e.target
+      canvasFilter.width = canvas.width;
+      canvasFilter.height = canvas.height;
+      filterImg = new Image();
+      filterImg.src = filter.src;
+      use_filter();
     }
   }
-    console.log(e.target.id);
   });

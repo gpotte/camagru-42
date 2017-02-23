@@ -2,7 +2,6 @@
   include '../db/connect_db.php';
   include '../mail/mail.php';
 
-  create_db();
   if ($_POST["password"] == $_POST["check"])
   {
     /*connect to the db */
