@@ -73,22 +73,46 @@
     if (!canvasData)
       $("#resultat").html("<p>Please take a picture !</p>");
     else {
-      $.post(
-          'testSave.php' , // Un script PHP que l'on va créer juste après
-          {
-              data : canvasData,  // Nous récupérons la valeur de nos input que l'on fait passer à connexion.php
-              filter : filterData,
-          },
-          function(data){
-            console.log(data);
-              if(data == 'Success'){
-                   $("#resultat").html("<p>Pix Uploaded !</p>");
-              }
-              else{
-                   $("#resultat").html("<p>Fail...</p>");
-              }
+      var param = {
+        "data" : canvasData,
+        "filter" : filterData
+      };
+      var single_param = create_param(param);
+      var xmlhttp = new XMLHttpRequest();
+      /* AJAX WITHOUT JQUERY */
+      xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
+           if (xmlhttp.status == 200 || xmlhttp.status == 201) {
+             var data = xmlhttp.responseText;
+             if (data == 'Success')
+             {
+               document.getElementById("resultat").innerHTML = "Pix uploaded";
+             }
+            else
+                document.getElementById("resultat").innerHTML = "Fail";
+           }
+           else
+              alert('Something Went Wrong');
+        }
+    };
 
-          }
-       );
+    xmlhttp.open("POST", "testSave.php", true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.send(single_param);
+    /* AJAX WITHOUT JQUERY */
       }
     }
+
+    /* PUT EVERYTHING ON A SINGLE PARAM FOR POST WITHOUT JQUERY */
+  function create_param(param){
+    var parameterString = "";
+    var isFirst = true;
+    for(var index in param) {
+      if(!isFirst) {
+        parameterString += "&";
+      }
+      parameterString += encodeURIComponent(index) + "=" + encodeURIComponent(param[index]);
+      isFirst = false;
+    }
+    return (parameterString);
+  }

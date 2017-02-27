@@ -1,51 +1,84 @@
-$(document).ready(function(){
+var mail_button = document.getElementById('mail_button'),
+    pwd_button = document.getElementById('pwd_button');
 
-    $("#mail_button").click(function(){
+    mail_button.onclick = function(){
+      var param = {
+        "mail" : document.getElementById('mail').value,
+      };
+      var single_param = create_param(param);
+      var xmlhttp = new XMLHttpRequest();
+      /* AJAX WITHOUT JQUERY */
+      xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
+           if (xmlhttp.status == 200 || xmlhttp.status == 201) {
+             var data = xmlhttp.responseText;
+             if (data == 'Success')
+             {
+               document.getElementById("resultat").innerHTML = "Mail changé avec succès ! veuillez le confirmez avant votre prochaine connexion";
+               document.getElementById("current_mail").innerHTML = document.getElementById('mail').value;
+             }
+             else if (data == "used")
+                document.getElementById("resultat").innerHTML = "Ce mail est deja pris";
+            else if (data == "invalid")
+                document.getElementById("resultat").innerHTML = "Ce mail est invalide";
+            else
+                document.getElementById("resultat").innerHTML = "Erreur";
+           }
+           else
+              alert('Something Went Wrong');
+        }
+    };
 
-        $.post(
-            'new_mail.php' , // Un script PHP que l'on va créer juste après
-            {
-                mail : $("#mail").val(),  // Nous récupérons la valeur de nos input que l'on fait passer à connexion.php
-            },
+    xmlhttp.open("POST", "new_mail.php", true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.send(single_param);
+    /* AJAX WITHOUT JQUERY */
+    }
 
-            function(data){
-                console.log(data)
-                if(data == 'Success')
-                {
-                     $("#current_mail").html(mail);
-                     $("#resultat").html("<p>Mail changé avec succès ! veuillez le confirmez avant votre prochaine connexion</p>");
-                }
-                else if (data == "used")
-                     $("#resultat").html("<p>Ce mail est deja pris...</p>");
-                else if (data == "invalid")
-                    $("#resultat").html("<p>Ce mail est invalide...</p>");
-                else
-                  $("#resultat").html("<p>erreur...</p>");
-            }
-         );
 
-    });
+    pwd_button.onclick = function(){
+      var param = {
+        "pwd" : document.getElementById('pwd').value,
+        "check" : document.getElementById('check').value
+      };
+      var single_param = create_param(param);
+      var xmlhttp = new XMLHttpRequest();
+      /* AJAX WITHOUT JQUERY */
+      xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
+           if (xmlhttp.status == 200 || xmlhttp.status == 201) {
+             var data = xmlhttp.responseText;
+             if (data == 'Success')
+             {
+               document.getElementById("resultat").innerHTML = "Mot de passe changez avec succes";
+             }
+            else if (data == "invalid")
+                document.getElementById("resultat").innerHTML = "Ce mot de passe est invalide";
+            else
+                document.getElementById("resultat").innerHTML = "Erreur";
+           }
+           else
+              alert('Something Went Wrong');
+        }
+    };
 
-    $("#pwd_button").click(function(){
+    xmlhttp.open("POST", "new_pwd.php", true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.send(single_param);
+    /* AJAX WITHOUT JQUERY */
+    }
 
-        $.post(
-            'new_pwd.php' , // Un script PHP que l'on va créer juste après
-            {
-                pwd : $("#pwd").val(),  // Nous récupérons la valeur de nos input que l'on fait passer à connexion.php
-                check : $("#check").val(),
-            },
-
-            function(data){
-                console.log(data)
-                if(data == 'Success'){
-                     $("#resultat").html("<p>Mot de passe changé avec succès !</p>");
-                }
-                else if (data == "invalid")
-                     $("#resultat").html("<p>Ce mot de passe est invalide...</p>");
-                else
-                     $("#resultat").html("<p>erreur...</p>");
-            }
-         );
-
-    });
-  });
+    
+/* PUT EVERYTHING ON A SINGLE PARAM FOR POST WITHOUT JQUERY */
+  function create_param(param){
+      var parameterString = "";
+      var isFirst = true;
+      for(var index in param) {
+        if(!isFirst) {
+          parameterString += "&";
+        }
+        parameterString += encodeURIComponent(index) + "=" + encodeURIComponent(param[index]);
+        isFirst = false;
+      }
+      return (parameterString);
+  }

@@ -1,24 +1,44 @@
-$(document).ready(function(){
+var send = document.getElementById('send');
 
-    $("#send").click(function(){
+  send.onsubmit = function(ev){
+    ev.preventDefault();
+    var param = {
+      "login" : document.getElementById('login').value,
+      "mail" : document.getElementById('mail').value
+    };
+    var single_param = create_param(param);
+    var xmlhttp = new XMLHttpRequest();
+    /* AJAX WITHOUT JQUERY */
+    xmlhttp.onreadystatechange = function() {
+      if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
+         if (xmlhttp.status == 200 || xmlhttp.status == 201) {
+           if (xmlhttp.responseText == 'Success')
+           {
+             document.getElementById("resultat").innerHTML = "Un mail vous a ete envoyer";
+           }
+           else
+              document.getElementById("resultat").innerHTML = "Erreur";
+         }
+         else
+            alert('Something Went Wrong');
+      }
+  };
 
-        $.post(
-            'lost_pwd.php' , // Un script PHP que l'on va créer juste après
-            {
-                login : $("#login").val(),  // Nous récupérons la valeur de nos input que l'on fait passer à connexion.php
-                mail : $("#mail").val()
-            },
+  xmlhttp.open("POST", "lost_pwd.php", true);
+  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xmlhttp.send(single_param);
+  /* AJAX WITHOUT JQUERY */
+}
 
-            function(data){
-                console.log(data)
-                if(data == 'Success'){
-                     $("#resultat").html("<p>Un mail vous a ete envoyer</p>");
-                }
-                else{
-                     $("#resultat").html("<p>Erreur</p>");
-                }
-            }
-         );
-
-    });
-  });
+function create_param(param){
+    var parameterString = "";
+    var isFirst = true;
+    for(var index in param) {
+      if(!isFirst) {
+        parameterString += "&";
+      }
+      parameterString += encodeURIComponent(index) + "=" + encodeURIComponent(param[index]);
+      isFirst = false;
+    }
+    return (parameterString);
+}

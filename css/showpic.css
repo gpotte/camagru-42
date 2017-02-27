@@ -1,0 +1,24 @@
+header {
+  border: 5px solid pink;
+}
+
+.header img{
+  height: 50px;
+  width: 30px;
+}
+
+#full_img {
+  width:90vw;
+  max-width: 720px;
+}
+
+.footer {
+  height: : 10vh;
+  width: 100%;
+  position: absolute;
+  background-color: pink;
+}
+
+.footer p {
+  text-align: center;
+}

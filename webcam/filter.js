@@ -16,6 +16,12 @@ function use_filter(){
     filterCtx.clearRect(0, 0, width, height);
   }
 
+  function reset_canvas(){
+    canvas.getContext('2d').clearRect(0, 0, width, height);
+    canvasData = null;
+    uploadbutton.value = "";
+  }
+
   function myDown(e){
   if (e.pageX < filterX + 40 + canvasFilter.offsetLeft && e.pageX > filterX - 40 +
   canvasFilter.offsetLeft && e.pageY < filterY + 30 + canvasFilter.offsetTop &&

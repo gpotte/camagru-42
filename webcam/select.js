@@ -16,6 +16,7 @@ startbutton.addEventListener('click', function(ev){
 
 reset_button.addEventListener('click', function(ev){
   reset_filter();
+  filter = null;
   reset_canvas();
 }, false);
 

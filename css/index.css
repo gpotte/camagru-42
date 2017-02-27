@@ -1,29 +1,21 @@
-#filter_container {
+.header {
   border: 5px solid pink;
 }
 
-#header {
-  border: 5px solid pink;
-}
-
-#header img{
+.header img{
   height: 50px;
   width: 30px;
 }
 
-#filter_container img {
-    opacity: 0.5;
-    filter: alpha(opacity=50); /* For IE8 and earlier */
-}
-
-#filter_container img:hover {
-    opacity: 1.0;
-    filter: alpha(opacity=100); /* For IE8 and earlier */
+.middle div {
+  float: left;
+  clear: none;
+  height: 720px;
 }
 
 #view_part {
   border: 5px solid blue;
-  height: 750px;
+  width : 75vw;
 }
 
 #view_part #video {
@@ -41,4 +33,40 @@
   z-index: 2;
   position: absolute;
   margin: auto;
+}
+
+.galery img{
+  width: 30vw;
+  height: auto;
+}
+
+#mini_galery {
+  float: right;
+  width: 20vw;
+  border: 5px solid blue;
+}
+
+#filter_container {
+  border: 5px solid blue;
+}
+
+#filter_container img {
+    opacity: 0.5;
+    filter: alpha(opacity=50); /* For IE8 and earlier */
+}
+
+#filter_container img:hover {
+    opacity: 1.0;
+    filter: alpha(opacity=100); /* For IE8 and earlier */
+}
+
+.footer {
+  height: : 10vh;
+  width: 100%;
+  position: absolute;
+  background-color: pink;
+}
+
+.footer p {
+  text-align: center;
 }
