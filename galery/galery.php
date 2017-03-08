@@ -21,6 +21,25 @@
       }
     }
 
+    function mini_galery(){
+      $pdo = connect_db();
+      $query = "SELECT id, path FROM photo ORDER BY id DESC limit 12";
+      $sth = $pdo->prepare($query);
+      $sth->execute();
+      $i = 1;
+      $array = $sth->fetchAll();
+      foreach ($array as $value) {
+        if (($i - 1) % 2 == 0)
+          echo "<tr>";
+        echo "<td><a href=galery/showpic.php?id=".$value["id"].">";
+        echo "<img class=galery_img src=".$value["path"]."></img>";
+        echo "</a></td>";
+        if ($i % 2 == 0)
+          echo "</tr>";
+        $i++;
+      }
+    }
+
     function get_comm($id)
     {
       $pdo = connect_db();
@@ -39,7 +58,7 @@
         echo "<tr><td><p>".$value["login"]." : ". $value["com"] ."</p></td></tr>";
       }
       echo '<tr><td>
-        <form id="com_form" action="#">
+        <form id="com_form" onsubmit="comment(event)">
           <input type="text" placeholder="your comment" id="new_com" required>
           <input type="submit" value="commentez">
         </form>
@@ -68,9 +87,9 @@
       $sth->execute(array($id, $usr_id));
       $r = $sth->fetch();
       if ($r)
-        echo "<input type=submit id=like value=UNLIKE></input>";
+        echo "<input type=submit id=like value=UNLIKE onclick='like()'></input>";
      else
-        echo "<input type=submit id=like value=LIKE></input>";
+        echo "<input type=submit id=like value=LIKE onclick='like()'></input>";
     }
 
     function delete_button($id)
@@ -85,6 +104,6 @@
       $sth->execute(array($usr_id, $id));
       $r = $sth->fetch();
       if ($r)
-        echo "<button id=delete>Delete Image</button>";
+        echo "<button id=delete onclick='delete_pix()'>Delete Image</button>";
     }
  ?>

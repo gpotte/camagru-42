@@ -46,6 +46,10 @@
   border: 5px solid blue;
 }
 
+#mini_galery img {
+  width: 50%;
+  height: auto;
+}
 #filter_container {
   border: 5px solid blue;
 }

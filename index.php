@@ -1,5 +1,6 @@
 <?php
   include 'db/database.php';
+  include 'galery/galery.php';
 
   create_db();
   session_start();
@@ -30,8 +31,8 @@
       <canvas id="filter" ondrop="drop(event)" ondragover="allowDrop(event)">Please Use a html5 compatible Browser</canvas>
     </div>
     <div id="mini_galery">
-      <a href="galery/index.php"><button>Access Galery</button></a>
-  <!-- mini_galery(); -->
+      <a href="galery/index.php"><button>Access Galery</button></a><br>
+      <?php mini_galery(); ?>
     </div>
   </div>
   <button id="startbutton">Prendre une photo</button>

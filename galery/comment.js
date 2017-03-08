@@ -1,7 +1,7 @@
 var com_submit = document.getElementById("com_form");
 var like_btn = document.getElementById("like");
 
-com_submit.onsubmit = function(ev){
+function comment(ev){
   ev.preventDefault();
   var param = {
     "comment" : document.getElementById('new_com').value,
@@ -27,7 +27,7 @@ xmlhttp.send(single_param);
 /* AJAX WITHOUT JQUERY */
 }
 
-like_btn.onclick = function(){
+function like(){
   var param = {
     "like" : document.getElementById('like').value,
     "id" : document.getElementById('id').value
@@ -50,6 +50,32 @@ xmlhttp.open("POST", "like.php", true);
 xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 xmlhttp.send(single_param);
 /* AJAX WITHOUT JQUERY */
+}
+
+function delete_pix(){
+  if (confirm("etes-vous sur de vouloir supprimer cette image ?"))
+  {
+    var param = {
+      id : document.getElementById('id').value
+    };
+    var single_param = create_param(param);
+    var xmlhttp = new XMLHttpRequest();
+    /* AJAX WITHOUT JQUERY */
+    xmlhttp.onreadystatechange = function() {
+      if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
+         if (xmlhttp.status == 200 || xmlhttp.status == 201) {
+           console.log(xmlhttp.responseText);
+         }
+         else
+            alert('Something Went Wrong');
+      }
+  }
+
+  xmlhttp.open("POST", "delete.php", true);
+  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xmlhttp.send(single_param);
+  /* AJAX WITHOUT JQUERY */
+  }
 }
 
 /* PUT EVERYTHING ON A SINGLE PARAM FOR POST WITHOUT JQUERY */

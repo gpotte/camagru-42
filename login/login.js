@@ -1,7 +1,7 @@
 var log_form = document.getElementById('log_field'),
     sign_form = document.getElementById('sign_field');
 
-    log_form.onsubmit = function(ev){
+    function login(ev){
       ev.preventDefault();
       var param = {
         "login" : document.getElementById('login').value,
@@ -32,7 +32,7 @@ var log_form = document.getElementById('log_field'),
     /* AJAX WITHOUT JQUERY */
   }
 
-  sign_form.onsubmit = function(ev){
+  function signin(ev){
     ev.preventDefault();
     var param = {
       "login" : document.getElementById('new_log').value,

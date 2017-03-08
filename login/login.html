@@ -9,15 +9,15 @@
     <div id="resultat">
     </div>
       <div class"container">
-            <form id="log_field">
-            <fieldset >
+            <form id="log_field" onsubmit="login()">
+            <fieldset>
               <legend>Login</legend>
               <input type="text" name="login" placeholder="login" id="login" required><br>
               <input type="password" name="password" placeholder="password" id="password" required><br>
               <input type="submit" value="Login"><br>
             </fieldset>
           </form>
-          <form id='sign_field'>
+          <form id='sign_field' onsubmit="signin()">
             <fieldset >
               <legend>Sign in</legend>
               <input type="text" name="login" placeholder="login" id="new_log" maxlength="15" required><br>
