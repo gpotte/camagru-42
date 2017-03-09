@@ -35,19 +35,20 @@
   margin: auto;
 }
 
-.galery img{
+.gallery img{
   width: 30vw;
   height: auto;
 }
 
-#mini_galery {
+#mini_gallery {
   float: right;
   width: 20vw;
   border: 5px solid blue;
 }
 
-#mini_galery img {
+#mini_gallery img {
   width: 50%;
+  max-width: 130px;
   height: auto;
 }
 #filter_container {
@@ -56,6 +57,8 @@
 
 #filter_container img {
     opacity: 0.5;
+    width: 200px;
+    height: auto;
     filter: alpha(opacity=50); /* For IE8 and earlier */
 }
 

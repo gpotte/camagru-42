@@ -1,7 +1,4 @@
-var log_form = document.getElementById('log_field'),
-    sign_form = document.getElementById('sign_field');
-
-    function login(ev){
+    function ft_login(ev){
       ev.preventDefault();
       var param = {
         "login" : document.getElementById('login').value,
@@ -24,7 +21,7 @@ var log_form = document.getElementById('log_field'),
            else
               alert('Something Went Wrong');
         }
-    };
+    }
 
     xmlhttp.open("POST", "login.php", true);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -49,12 +46,8 @@ var log_form = document.getElementById('log_field'),
            var data = xmlhttp.responseText;
            if (xmlhttp.responseText == 'Success')
              document.getElementById("resultat").innerHTML = "Un mail de confirmation vous a ete envoyer";
-          else if (data == 'Login already Taken')
-              document.getElementById("resultat").innerHTML = "Ce login est deja pris";
-          else if (data == 'Mail Already Taken')
-            document.getElementById("resultat").innerHTML = "Ce mail est deja utiliser";
-          else
-            document.getElementById("resultat").innerHTML = "Erreur lors de la creation du compte";
+          else (data == 'Login already Taken')
+              document.getElementById("resultat").innerHTML = data;
          }
          else
             alert('Something Went Wrong');
@@ -67,6 +60,34 @@ var log_form = document.getElementById('log_field'),
   /* AJAX WITHOUT JQUERY */
   }
 
+  function password_strength(){
+    var param = {
+      "password" : document.getElementById('new_pwd').value,
+    };
+    var single_param = create_param(param);
+    var xmlhttp = new XMLHttpRequest();
+    /* AJAX WITHOUT JQUERY */
+    xmlhttp.onreadystatechange = function() {
+      if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
+        if (xmlhttp.status == 200 || xmlhttp.status == 201) {
+          var data = xmlhttp.responseText;
+          if (data == 'Success')
+            document.getElementById("resultat").innerHTML = "password valid";
+          else if (data == 'allchar' || data == 'allnum')
+            document.getElementById("resultat").innerHTML = "le password doit contenir des chiffres et des lettres";
+          else if (data == 'Too Short')
+            document.getElementById("resultat").innerHTML = "password Too Short";
+      }
+       else
+          alert('Something Went Wrong');
+        }
+      };
+
+    xmlhttp.open("POST", "passwd.php", true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.send(single_param);
+      /* AJAX WITHOUT JQUERY */
+    }
 
 function create_param(param){
     var parameterString = "";

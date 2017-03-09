@@ -54,3 +54,24 @@ finishbutton.addEventListener('click', function(ev){
     }
   }
   });
+
+  function reloadgallery(){
+      var xmlhttp = new XMLHttpRequest();
+      /* AJAX WITHOUT JQUERY */
+      xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
+           if (xmlhttp.status == 200 || xmlhttp.status == 201) {
+               var data = xmlhttp.responseText;
+               document.getElementById("mini_gallery").innerHTML = data;
+            }
+           else
+              alert('Something Went Wrong');
+    }
+  }
+
+    xmlhttp.open("POST", "gallery/mini_gallery.php", true);
+    xmlhttp.send();
+    /* AJAX WITHOUT JQUERY */
+  }
+
+var refresh2 = setInterval(reloadgallery, 3000);

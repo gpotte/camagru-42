@@ -2,7 +2,7 @@
   include '../db/connect_db.php';
   session_start();
   if (!$_SESSION["username"])
-    header('Location: login/login.html');
+    header('Location: login');
   $pdo = connect_db();
   $query = "SELECT mail FROM users WHERE LOGIN LIKE ?";
   $sth = $pdo->prepare($query);

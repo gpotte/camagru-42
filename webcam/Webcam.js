@@ -86,9 +86,9 @@
              var data = xmlhttp.responseText;
              if (data == 'Success')
              {
-               document.getElementById("resultat").innerHTML = "Pix uploaded";
+               document.getElementById("resultat").innerHTML = "Pix uploaded in the gallery";
              }
-            else
+             else
                 document.getElementById("resultat").innerHTML = "Fail";
            }
            else

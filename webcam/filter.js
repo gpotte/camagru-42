@@ -8,7 +8,7 @@ function use_filter(){
   if (filter)
   {
     reset_filter();
-    filterCtx.drawImage(filterImg, filterX - 40, filterY - 30, 80, 60);
+    filterCtx.drawImage(filterImg, filterX - 100, filterY - 100, 200, 200);
   }
 }
 
@@ -23,9 +23,9 @@ function use_filter(){
   }
 
   function myDown(e){
-  if (e.pageX < filterX + 40 + canvasFilter.offsetLeft && e.pageX > filterX - 40 +
-  canvasFilter.offsetLeft && e.pageY < filterY + 30 + canvasFilter.offsetTop &&
-  e.pageY > filterY - 30 + canvasFilter.offsetTop){
+  if (e.pageX < filterX + 100 + canvasFilter.offsetLeft && e.pageX > filterX - 100 +
+  canvasFilter.offsetLeft && e.pageY < filterY + 100 + canvasFilter.offsetTop &&
+  e.pageY > filterY - 100 + canvasFilter.offsetTop){
     filterX = e.pageX - canvasFilter.offsetLeft;
     filterY = e.pageY - canvasFilter.offsetTop;
     dragok = true;

@@ -1,6 +1,6 @@
 <?php
-  include '../db/connect_db.php';
-  include '../mail/mail.php';
+  include_once '../db/connect_db.php';
+  include_once '../mail/mail.php';
 
   if ($_POST["password"] == $_POST["check"])
   {
@@ -28,6 +28,8 @@
       echo "Login already Taken";
     else if ($sth2->fetch())
       echo "Mail Already Taken";
+    else if (passwd_security($passwd) != "Success")
+      echo "Wrong password";
     else
     {
       $sth = $pdo->prepare($request);
@@ -39,5 +41,18 @@
       else
         print_r($sth->errorInfo());
       }
+  }
+  else
+    echo "Password and Check must be the same";
+
+  function passwd_security($pwd){
+    if (strlen($pwd) < 8)
+      return "Too Short";
+    else if (!preg_match("#[0-9]+#", $pwd))
+      return "allchar";
+    else if (!preg_match("#[a-zA-Z]+#", $pwd))
+      return "allnum";
+    else
+      return "Success";
   }
  ?>

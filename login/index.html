@@ -9,7 +9,7 @@
     <div id="resultat">
     </div>
       <div class"container">
-            <form id="log_field" onsubmit="login()">
+            <form id="log_field" onsubmit="ft_login(event)">
             <fieldset>
               <legend>Login</legend>
               <input type="text" name="login" placeholder="login" id="login" required><br>
@@ -17,18 +17,20 @@
               <input type="submit" value="Login"><br>
             </fieldset>
           </form>
-          <form id='sign_field' onsubmit="signin()">
+          <form id='sign_field' onsubmit="signin(event)">
             <fieldset >
               <legend>Sign in</legend>
               <input type="text" name="login" placeholder="login" id="new_log" maxlength="15" required><br>
               <input type="email" name="mail" placeholder="email" id="mail" maxlength="50" required><br>
-              <input type="password" name="password" placeholder="password" id="new_pwd" minlength="5" maxlength="15" required><br>
+              <input type="password" name="password"
+                placeholder="password" id="new_pwd"
+                minlength="8" maxlength="15" required oninput="password_strength()"><br>
               <input type="password" name="password_ck" placeholder="repeat password" id="check" required><br>
               <input type="submit" value="Sign In">
             </fieldset>
           </form>
         </div>
         <a href="lost_pwd.html">password lost ?</a>
-      <script type="text/javascript" src="login.js"></script>
   </body>
+  <script type="text/javascript" src="login.js"></script>
 </html>
