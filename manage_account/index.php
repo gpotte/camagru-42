@@ -38,23 +38,25 @@
         <td id="current_mail">
           <?php echo $acc["mail"];?>
         </td>
+        <form onsubmit="change_mail(event)">
         <td>
-          <input type="email" name="mail" placeholder="email" id="mail" maxlength="50"><br>
+          <input type="email" name="mail" placeholder="email" id="mail" maxlength="50" required><br>
         </td>
         <td>
-          <button id="mail_button">Change Mail</button>
+          <input type=submit value="Change Mail">
         </td>
+      </form>
       </tr>
 
       <tr>
         <td>
-          <input type="password" name="password" placeholder="new password" id="pwd" minlength="5" maxlength="15">
+          <input type="password" name="password" placeholder="new password" id="pwd" minlength="8" maxlength="15" required oninput="password_strength()">
         </td>
         <td>
-          <input type="password" name="check" placeholder="confirmation" id="check" minlength="5" maxlength="15">
+          <input type="password" name="check" placeholder="confirmation" id="check" required>
         </td>
         <td>
-          <button id="pwd_button">Change Password</button>
+          <button id="pwd_button" onclick="change_pwd()">Change Password</button>
         </td>
       </tr>
     </table>

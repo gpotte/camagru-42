@@ -1,4 +1,13 @@
+* {
+  background-color: grey;
+}
 
+button{
+  background-color: white;
+}
+input {
+  background-color: white;
+}
 fieldset{
   text-align: center;
   width: 20%;

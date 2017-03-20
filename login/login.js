@@ -44,9 +44,9 @@
       if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
          if (xmlhttp.status == 200 || xmlhttp.status == 201) {
            var data = xmlhttp.responseText;
-           if (xmlhttp.responseText == 'Success')
+           if (data == 'Success')
              document.getElementById("resultat").innerHTML = "Un mail de confirmation vous a ete envoyer";
-          else (data == 'Login already Taken')
+           else
               document.getElementById("resultat").innerHTML = data;
          }
          else

@@ -1,7 +1,8 @@
 var mail_button = document.getElementById('mail_button'),
     pwd_button = document.getElementById('pwd_button');
 
-    mail_button.onclick = function(){
+    function change_mail(ev){
+      ev.preventDefault();
       var param = {
         "mail" : document.getElementById('mail').value,
       };
@@ -27,7 +28,7 @@ var mail_button = document.getElementById('mail_button'),
            else
               alert('Something Went Wrong');
         }
-    };
+    }
 
     xmlhttp.open("POST", "new_mail.php", true);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -36,7 +37,7 @@ var mail_button = document.getElementById('mail_button'),
     }
 
 
-    pwd_button.onclick = function(){
+     function change_pwd(){
       var param = {
         "pwd" : document.getElementById('pwd').value,
         "check" : document.getElementById('check').value
@@ -68,7 +69,36 @@ var mail_button = document.getElementById('mail_button'),
     /* AJAX WITHOUT JQUERY */
     }
 
-    
+    function password_strength(){
+      var param = {
+        "password" : document.getElementById('pwd').value,
+      };
+      var single_param = create_param(param);
+      var xmlhttp = new XMLHttpRequest();
+      /* AJAX WITHOUT JQUERY */
+      xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
+          if (xmlhttp.status == 200 || xmlhttp.status == 201) {
+            var data = xmlhttp.responseText;
+            if (data == 'Success')
+              document.getElementById("resultat").innerHTML = "password valid";
+            else if (data == 'allchar' || data == 'allnum')
+              document.getElementById("resultat").innerHTML = "le password doit contenir des chiffres et des lettres";
+            else if (data == 'Too Short')
+              document.getElementById("resultat").innerHTML = "password Too Short";
+        }
+         else
+            alert('Something Went Wrong');
+          }
+        };
+
+      xmlhttp.open("POST", "../login/passwd.php", true);
+      xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xmlhttp.send(single_param);
+        /* AJAX WITHOUT JQUERY */
+      }
+
+
 /* PUT EVERYTHING ON A SINGLE PARAM FOR POST WITHOUT JQUERY */
   function create_param(param){
       var parameterString = "";

@@ -1,5 +1,16 @@
+html body {
+  min-width: 1300px;
+  max-width: 1300px;
+  background-color: grey;
+}
+
+button{
+  background-color: white;
+  border-radius: 25%;
+}
+
 .header {
-  border: 5px solid pink;
+  border: 3px solid #DCDCDC;
 }
 
 .header img{
@@ -14,23 +25,25 @@
 }
 
 #view_part {
-  border: 5px solid blue;
-  width : 75vw;
+  border: 3px solid #DCDCDC;
+  width : 960px;
 }
 
 #view_part #video {
-  z-index: 0;
+  z-index: 1;
   position: absolute;
+  margin: auto;
+
 }
 
 #view_part #canvas{
-  z-index: 1;
+  z-index: 2;
   position: absolute;
   margin: auto;
 }
 
 #view_part #filter{
-  z-index: 2;
+  z-index: 3;
   position: absolute;
   margin: auto;
 }
@@ -42,8 +55,8 @@
 
 #mini_gallery {
   float: right;
-  width: 20vw;
-  border: 5px solid blue;
+  width: 260px;
+  border: 3px solid #DCDCDC;
 }
 
 #mini_gallery img {
@@ -51,13 +64,15 @@
   max-width: 130px;
   height: auto;
 }
+
 #filter_container {
-  border: 5px solid blue;
+  border-radius: 10%;
 }
 
 #filter_container img {
     opacity: 0.5;
-    width: 200px;
+    width: 15vw;
+    max-width: 190px;
     height: auto;
     filter: alpha(opacity=50); /* For IE8 and earlier */
 }
@@ -70,8 +85,8 @@
 .footer {
   height: : 10vh;
   width: 100%;
+  border: 3px solid #DCDCDC;
   position: absolute;
-  background-color: pink;
 }
 
 .footer p {

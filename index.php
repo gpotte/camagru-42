@@ -21,14 +21,15 @@
 <div class="header">
     <h1>CAMAGRU</h1>
     <a href="login/logout.php"><img src="ressources/58950.svg"></img></a>
-    <a href="manage_account/manage.php"><img src="ressources/295128.svg" title='<?php echo $_SESSION["username"]; ?>'></img></a>
+    <a href="manage_account/index.php"><img src="ressources/295128.svg" title='<?php echo $_SESSION["username"]; ?>'></img></a>
 </div>
+<br>
 <div class="body">
   <div class="middle">
     <div id="view_part">
       <video id="video"></video>
       <canvas id="canvas">Please Use a html5 compatible Browser</canvas>
-      <canvas id="filter" ondrop="drop(event)" ondragover="allowDrop(event)">Please Use a html5 compatible Browser</canvas>
+      <canvas id="filter">Please Use a html5 compatible Browser</canvas>
     </div>
     <div id="mini_gallery">
       <?php mini_gallery(); ?>

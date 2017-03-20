@@ -1,5 +1,16 @@
-header {
-  border: 5px solid pink;
+html body {
+  min-width: 1300px;
+  max-width: 1300px;
+  background-color: grey;
+}
+
+button{
+  background-color: white;
+  border-radius: 25%;
+}
+
+.header {
+  border: 3px solid #DCDCDC;
 }
 
 .header img{
@@ -7,6 +18,9 @@ header {
   width: 30px;
 }
 
+.body {
+  border: 3px solid #DCDCDC;
+}
 #full_img {
   width:90vw;
   max-width: 720px;

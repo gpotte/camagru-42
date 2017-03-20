@@ -71,7 +71,7 @@
   function uploadPicture()
   {
     if (!canvasData)
-      $("#resultat").html("<p>Please take a picture !</p>");
+      document.getElementById("resultat").innerHTML = "Please take a picture !";
     else {
       var param = {
         "data" : canvasData,
